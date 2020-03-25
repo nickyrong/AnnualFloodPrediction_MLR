@@ -1,0 +1,508 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\froman\fcharset0 Times-Bold;
+\f3\froman\fcharset0 Times-Roman;\f4\froman\fcharset0 Times-Italic;\f5\ftech\fcharset77 Symbol;
+\f6\fswiss\fcharset0 Helvetica-Oblique;\f7\fmodern\fcharset0 Courier;\f8\froman\fcharset0 Times-BoldItalic;
+\f9\fmodern\fcharset0 Courier-Oblique;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red31\green73\blue125;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c12157\c28627\c49020;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+{\info
+{\author Wang, Tongli}}\margl1440\margr1440\vieww12840\viewh16440\viewkind1\viewscale130
+\deftab720
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\fs32 \cf0 __________________________________________\
+\pard\pardeftab720\ri0\sb240\sa60\qc\partightenfactor0
+
+\f1\b\fs36 \cf0 ClimateNA v6.2
+\f2 0\
+\pard\pardeftab720\ri0\sb120\qc\partightenfactor0
+
+\f0\b0\fs28 \cf0 A program to generate climate normal, annual, seasonal and monthly data for historical and future periods in North America
+\f3 \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\fs20 \cf0 \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\fs24 \cf0 Tongli Wang\
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f4\i \cf0 Centre for Forest Conservation Genetics\
+Department of Forest Sciences, University of British Columbia\
+\
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\i0 \cf0 Andreas Hamann\
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f4\i \cf0 Department of Renewable Resources, University of Alberta\
+\
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\i0 \cf0 Dave Spittlehouse\
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f4\i \cf0 Research Branch, BC Ministry of Forests\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\i0 \cf0 \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f4\i \cf0 \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\i0 \cf0 September 30, 2019
+\f3 \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f4\i \cf0 \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f3\i0 \cf0 Contact:
+\f4\i  \cf2 \ul \ulc2 tongli.wang@ubc.ca\cf0 \ulnone \
+\pard\pardeftab720\ri0\qc\partightenfactor0
+
+\f0\i0\fs32 \cf0 __________________________________________\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\fs24 \cf0 \
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f2\b\fs28 \cf0 \page \pard\pardeftab720\ri0\partightenfactor0
+
+\f1 \cf0 About this program \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\b0\fs24 \cf0 ClimateNA is a standalone MS Windows
+\f5 \super \'a8
+\f3 \nosupersub  software application (Wang et al. 2016) that extracts and downscales gridded (4 x 4 km) monthly climate data for the reference normal period (1961-1990) from PRISM (Daly et al. 2008) and WorldClim (Hijmans et al. 2005) to scale-free point locations. It also calculates many (>200) monthly, seasonal and annual climate variables. The downscaling is achieved through a combination of bilinear interpolation and dynamic local elevational adjustment. ClimateNA also uses the scale-free data as a baseline to downscale historical and future climate variables for individual years and periods between 1901 and 2100. A time-series function is available to generate climate variables for multiple locations and multiple years. \
+\pard\pardeftab720\fi720\ri0\partightenfactor0
+\cf0 The program can read and output comma-delimitated spreadsheet (CSV) files. The new version (v6.00) can also directly read digital elevation model (DEM) raster (ASC) files and output climate variables in raster format for mapping. The spatial resolution of the raster files is up to user\'92s preference. The coverage of the program is shown in Figure 1. \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\
+Figure 1. The coverage of ClimateNA. The extent of the coverage: longitude = -179.167 ~ -52.625\'b0; latitude = 14.453 ~ 83.203\'b0.\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\b\fs28 \cf0 Data sources\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i\b0\fs24 \cf0 Baseline data
+\f4 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\i0 \cf0 The monthly baseline data for 1961-1990 normals were compiled from the following sources and unified at 4 x 4 km spatial resolution:\
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\cf0 1.	British Columbia: PRISM at 800 x 800 m from Pacific Climate Impact Consortium;\
+2.	Parries provinces: PRISM at 4 x 4 km from the PRISM Climate Group ({\field{\*\fldinst{HYPERLINK "http://www.prism.oregonsta"}}{\fldrslt \cf2 \ul http://www.prism.oregonstate.edu/}});\
+3.	United States: PRISM at 800 x 800 m from the PRISM Climate Group (Daly 
+\f4\i et al
+\f3\i0 . 2008);\
+4.	The rest: WorldClim (Hijmans 
+\f4\i et al
+\f3\i0 . 2005); \
+5.  The monthly solar radiation data (1948-2010) were provided by Dr. Robbie Hember at University of British Columbia.\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 Historical data\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\i0 \cf0 Historical monthly data were developed by ourselves and replaced the data from Climate Research Unit (CRU ts4.01), which were used in previous versions, for improved accuracies. The data are at the spatial resolution is 0.5 x 0.5\'b0. \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f7\fs22 \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i\fs24 \cf0 Future climate data\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\i0 \cf0 The climate data for future periods, including 2020s (2010-2039), 2050s (2040-69) and 2080s (2070-2100), were from General Circulation Models (GCMs) of the Coupled Model Intercomparison Project (CMIP5) included in the IPCC Fifth Assessment Report (IPCC 2014). Fifteen GCMs were selected for three greenhouse gas emission scenarios (RCP 2.6, RCP 4.5 and RCP 8.5) except two GCMs that do not have data for RCP 2.6. When multiple ensembles are available for each GCM, an average was taken over the available (up to five) ensembles. Ensembles among the 15 GCMs are also available. Time-series of monthly projections are provided for the years between 2011-2100 for RCP 4.5 and RCP 8.5 of six GCMs. \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 Paleoclimate data\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\i0 \cf0 Monthly paleoclimate data were from four GCMs of the CMIP5. The paleo periods covered: 1) Last Millennium or past 1000 years, starting on January 01, 0850; 2) MidHolocene (6,000 years ago); and 3) Last Glacial Maximum (21,000 kyrs ago). Monthly averages were taken over the first 50 years of each period, which is the minimum period available in among the four GCMs.\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 How to add climate data from additional GCMs\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\i0 \cf0 The coordinate file \'93ClimateNA_GCM_coord_vID.csv\'94 included in the \'93Reference\'94 folder can be used as a template to add additional GCM data to the package by users. After the monthly climate data are added to the template, remove the first three columns and save it to the GCMdat folder with the extension name \'93.gcm\'94. This applies to GCM time series data as well.\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f2\b\fs28 \cf0 \page \pard\pardeftab720\ri0\partightenfactor0
+
+\f1 \cf0 Climate variables predicted
+\f2 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i\b0\fs24 \cf0 1) Annual variables:\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f4 \cf0 Directly calculated annual variables:\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f3\i0 \cf0 MAT	 	mean annual temperature (\'b0C),\
+MWMT 	mean warmest month temperature (\'b0C),\
+MCMT  	mean coldest month temperature (\'b0C),\
+TD 		temperature difference between MWMT and MCMT, or continentality (\'b0C),\
+MAP 		mean annual precipitation (mm),\
+MSP 		May to September precipitation (mm),\
+\pard\pardeftab720\ri630\sb60\partightenfactor0
+\cf0 AHM  	annual heat-moisture index (MAT+10)/(MAP/1000))\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 SHM 	 	summer heat-moisture index ((MWMT)/(MSP/1000))\
+\pard\pardeftab720\li1440\ri0\sb60\partightenfactor0
+\cf0 	\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f4\i \cf0 Derived annual variables:\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f3\i0 \cf0 DD<0		degree-days below 0\'b0C, chilling degree-days\
+DD>5		degree-days above 5\'b0C, growing degree-days\
+DD<18	degree-days below 18\'b0C, heating degree-days\
+DD>18	degree-days above 18\'b0C, cooling degree-days\
+NFFD		the number of frost-free days\
+FFP		frost-free period\
+bFFP		the day of the year on which FFP begins\
+eFFP		the day of the year on which FFP ends\
+\pard\pardeftab720\li1440\fi-1440\ri0\sb60\partightenfactor0
+\cf0 PAS	precipitation as snow (mm). For individual years, it covers the period between August in the previous year and July in the current year.\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 EMT		extreme minimum temperature over 30 years\
+EXT		extreme maximum temperature over 30 years\
+Eref		Hargreaves reference evaporation (mm)\
+CMD		Hargreaves climatic moisture deficit (mm)\
+MAR		mean annual solar radiation (MJ m\super \uc0\u8208 2\nosupersub  d\super \uc0\u8208 1\nosupersub )\
+RH		mean annual relative humidity (%)\
+\pard\pardeftab720\li720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 2) Seasonal variables:\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f3\i0 \cf0 Winter (_wt): Dec (prev. yr for an individual year) - Feb for annual, Jan, Feb, Dec for normals\
+Spring (_sp): March, April and May\
+Summer (_sm): June, July and August\
+Autumn (_at): September, October and November \
+\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f4\i \cf0 Directly calculated seasonal variables:\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f3\i0 \cf0 Tave_wt	winter mean temperature (\'b0C)\
+Tave_sp	spring mean temperature (\'b0C)\
+Tave_sm	summer mean temperature (\'b0C)\
+Tave_at	autumn mean temperature (\'b0C)\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 Tmax_wt	winter mean maximum temperature (\'b0C)\
+Tmax_sp	spring mean maximum temperature (\'b0C)\
+Tmax_sm	summer mean maximum temperature (\'b0C)\
+Tmax_at	autumn mean maximum temperature (\'b0C)\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 Tmin_wt	winter mean minimum temperature (\'b0C)\
+Tmin_sp	spring mean minimum temperature (\'b0C)\
+Tmin_sm	summer mean minimum temperature (\'b0C)\
+Tmin_at	autumn mean minimum temperature (\'b0C)\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 PPT_wt	winter precipitation (mm)\
+PPT_sp	spring precipitation (mm) \
+PPT_sm	summer precipitation (mm) \
+PPT_at		autumn precipitation (mm)\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 RAD_wt	winter solar radiation (MJ m\super \uc0\u8208 2\nosupersub  d\super \uc0\u8208 1\nosupersub )\
+RAD_sp	spring solar radiation (MJ m\super \uc0\u8208 2\nosupersub  d\super \uc0\u8208 1\nosupersub )\
+RAD_sm	summer solar radiation (MJ m\super \uc0\u8208 2\nosupersub  d\super \uc0\u8208 1\nosupersub )\
+RAD_at	autumn solar radiation (MJ m\super \uc0\u8208 2\nosupersub  d\super \uc0\u8208 1\nosupersub )\
+\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f4\i \cf0 Derived seasonal variables:\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f3\i0 \cf0 DD_0_wt	winter degree-days below 0\'b0C\
+DD_0_sp	spring degree-days below 0\'b0C\
+DD_0_sm	summer degree-days below 0\'b0C\
+DD_0_at	autumn degree-days below 0\'b0C\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 DD5_wt	winter degree-days above 5\'b0C\
+DD5_sp	spring degree-days above 5\'b0C\
+DD5_sm	summer degree-days above 5\'b0C\
+DD5_at	autumn degree-days above 5\'b0C\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 DD_18_wt	winter degree-days below 18\'b0C\
+DD_18_sp	spring degree-days below 18\'b0C\
+DD_18_sm	summer degree-days below 18\'b0C\
+DD_18_at	autumn degree-days below 18\'b0C\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 DD18_wt	winter degree-days above 18\'b0C\
+DD18_sp	spring degree-days above 18\'b0C\
+DD18_sm	summer degree-days above 18\'b0C\
+DD18_at	autumn degree-days above 18\'b0C\
+\pard\pardeftab720\li720\fi720\ri0\sb60\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+\cf0 NFFD_wt 	winter number of frost-free days\
+NFFD_sp 	spring number of frost-free days\
+NFFD_sm 	summer number of frost-free days\
+NFFD_at 	autumn number of frost-free days\
+\
+PAS_wt 	winter precipitation as snow (mm)\
+PAS_sp 	spring precipitation as snow (mm)\
+PAS_sm 	summer precipitation as snow (mm)\
+PAS_at 	autumn precipitation as snow (mm)\
+\
+Eref_wt 	winter Hargreaves reference evaporation (mm)\
+Eref_sp 	spring Hargreaves reference evaporation (mm)\
+Eref_sm 	summer Hargreaves reference evaporation (mm)\
+Eref_at 	autumn Hargreaves reference evaporation (mm)\
+\
+CMD_wt 	winter Hargreaves climatic moisture deficit (mm)\
+CMD_sp 	spring Hargreaves climatic moisture deficit (mm)\
+CMD_sm 	summer Hargreaves climatic moisture deficit (mm)\
+CMD_at 	autumn Hargreaves climatic moisture deficit (mm)\
+\
+RH_wt		winter relative humidity (%)\
+RH_sp		winter relative humidity (%)\
+RH_sm	winter relative humidity (%)\
+RH_at		winter relative humidity (%)\
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 3) Monthly variables\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f4 \cf0 Primary monthly variables:\
+\pard\pardeftab720\ri0\sb60\partightenfactor0
+
+\f3\i0 \cf0 Tave01 \'96 Tave12 	January - December mean temperatures (\'b0C)\
+\pard\pardeftab720\ri-450\sb60\partightenfactor0
+\cf0 TMX01 \'96 TMX12 	January - December maximum mean temperatures (\'b0C)\
+TMN01 \'96 TMN12 	January - December minimum mean temperatures (\'b0C)\
+PPT01 \'96 PPT12  	January - December precipitation (mm)\
+RAD01 \'96 RAD12  	January - December solar radiation (MJ m\super \uc0\u8208 2\nosupersub  d\super \uc0\u8208 1\nosupersub )\
+\
+\pard\pardeftab720\ri-450\sb60\partightenfactor0
+
+\f4\i \cf0 Derived monthly variables:\
+\pard\pardeftab720\ri-450\sb60\partightenfactor0
+
+\f3\i0 \cf0 DD_0_01 \'96 DD_0_12   January - December degree-days below 0\'b0C\
+DD5_01 \'96 DD5_12     January - December degree-days above 5\'b0C\
+DD_18_01 \'96 DD_18_12  	January - December degree-days below 18\'b0C\
+DD18_01 \'96 DD18_12    	January - December degree-days above 18\'b0C\
+NFFD01 \'96 NFFD12 	    	January - December number of frost-free days\
+PAS01 \'96 PAS12 		January \'96 December precipitation as snow (mm)\
+Eref01 \'96 Eref12 	January \'96 December Hargreaves reference evaporation (mm)\
+CMD01 \'96 CMD12 	January \'96 December Hargreaves climatic moisture deficit (mm)\
+RH01 \'96 RH12		January \'96 December relative humidity (%)\
+\pard\pardeftab720\ri0\sb100\sa100\qc\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\b\fs28 \cf0 How to install \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\b0\fs24 \cf0 No installation is required. Simply unzip all the files and subfolders into a folder on your hard disk and double-click the file ClimateNA _v6.**.exe\'94. The program does not on network drives.\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\b\fs28 \cf0 How to use\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i\b0\fs24 \cf0 1) Use the program interactively\
+\pard\pardeftab720\fi-11\ri0\partightenfactor0
+
+\f5\i0 \cf0 	
+\f3 Latitude and longitude can be entered in either decimal degrees (e.g. Lat: 51.542, Long: 129.333) or degree, minute and second (e.g., 51
+\f5 \'a1
+\f3 30\'9215\'94N, 129
+\f5 \'a1
+\f3 15\'9230\'92W). Longitude information is accepted either in positive or negative values. Elevation has to be entered in meters, or empty if no elevation data are available. If "Monthly variables", "Seasonal variables" or "All variables" output variables was selected, an additional output sheet appears and annual climate variables are still calculated.\
+		Output data can be saved as a text file and imported to spreadsheet file using space-delimitated option.\
+\pard\pardeftab720\li1080\fi-360\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 2) For multi-location process
+\f8\b\fs32 \
+\pard\tx720\pardeftab720\li720\fi-360\ri0\partightenfactor0
+
+\f5\i0\b0\fs24 \cf0 \'a5	
+\f3 Most users will have their sample data information in an Excel spreadsheet or in a text file. To make it possible for the program to read this data it must first be modified to a standard format.\
+
+\f5 \'a5	
+\f3 Create a spreadsheet with the headers \'93ID1, ID2, lat, long, el\'94 as shown in the example below. ID1 and ID2 can be \'93Location\'94, \'93Region\'94 or whatever. The file must have the title row and all variables in the same order as shown. If you don\'92t have elevation information or a second ID, you have to put in \'93.\'94 in the columns. If you have more information columns in your original file, you have to remove them. \
+
+\f5 \'a5	
+\f3 If you use a GPS or GIS software to obtain your location information for many samples latitude values in the western hemisphere will be negative. For convenience, you can use either positive or negative values, and the program will automatically convert the data.\
+\pard\pardeftab720\li720\fi720\ri0\partightenfactor0
+\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\pard\tx720\pardeftab720\li720\fi-360\ri0\partightenfactor0
+
+\f5 \cf0 \'a5	
+\f3 After the spreadsheet is prepared as shown, save it as \'93comma delimited text file\'94 by choosing \'93Save as \'85\'94 from the file menu, and then specifying (*.csv) from the \'93Save as type \'85\'94 drop-down menu.\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\pard\tx720\pardeftab720\li720\fi-360\ri0\partightenfactor0
+
+\f5 \cf0 \'a5	
+\f3 You can also directly create a comma delimited text file in any text editor such as Notepad. If there is a missing value, you need to enter a \'93.\'94 between two commas. \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\
+		\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f2\b\fs32 \cf0 	\
+\pard\tx720\pardeftab720\li720\fi-360\ri0\partightenfactor0
+
+\f5\b0\fs24 \cf0 \'a5	
+\f3 Save this text file with a .csv extension by writing out the full file name with extension in parenthesis when saving, e. g. \'93test.csv\'94 instead of test.csv or test.\
+\pard\pardeftab720\li360\fi-360\ri0\partightenfactor0
+\cf0 \
+\pard\tx720\pardeftab720\li720\fi-360\ri0\partightenfactor0
+
+\f5 \cf0 \'a5	
+\f3 Now you are ready for processing: Click on   to read your spreadsheet and on  to specify your output file folder and file. Then, click the  button. Climate variable information will be appended as additional columns to your input file. If elevation information is provided the climate variables will be elevation adjusted.\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 3) For Time Series\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\i0 \cf0 Time Series function works only for the multi-location process. Here are the steps to follow: 
+\f3 \
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\ls1\ilvl0\cf0 1.	Select \'93Time Series\'94 (for historical years) or a future time series in the period section drop box;\
+2.	Select a variable category (monthly, seasonal, annual or all variables);\
+3.	Input the starting and ending years in the pop-up boxes;\
+4.	Specify input and output files, and click the \'93Calculate TS\'94 button. \
+\pard\pardeftab720\li720\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 4) Read and output raster map files \
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+
+\f0\i0\fs22 \cf3 1.	
+\f3\fs24 \cf0 Have a DEM raster file (*.asc) for the area of interest at the resolution you want;
+\fs28 \
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+
+\fs24 \cf0 2.	Click the \'93Select input file\'94 button and a file open box will show up;\
+3.  Navigate to the folder containing the raster file;\
+4.  Select the File type: \'93asc\'94 as shown in the following screenshot and only asc raster files will show up:\
+\
+5.  Select an asc input file and click \'93Open\'94 button;\
+6.  Click the \'93Specify output file\'94 button, and a default folder will show up;\
+7.  Click the \'93Save\'94 button;\
+8.  Click the \'93Start\'94 button, and climate variables in ASCII raster format will be generated.\
+9.  Projection: geographic coordinate system, GCS_WGS_1984\
+10. Data format: the following variables were multiplied by 10\
+\pard\pardeftab720\li990\fi-360\ri0\partightenfactor0
+\ls2\ilvl0
+\f5 \cf0 \'a5	
+\f3 Annual: MAT, MWMT, MCMT, TD, AHM, SHM, EMT, EXT and MAR;\
+\ls2\ilvl0
+\f5 \'a5	
+\f3 Seasonal: Tmax, Tmin, Tave and Rad;\
+\ls2\ilvl0
+\f5 \'a5	
+\f3 Monthly: Tmax, Tmin, Tave and Rad.\
+\pard\pardeftab720\li720\fi-360\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6\i \cf0 5) Process the raster output files\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\i0 \cf0 The output asc raster files can be directly imported (drag/drop) to ArcGIS or other GIS programs to generate maps. They can also be directly used in R to plot maps using the following code as an example:\
+\pard\pardeftab720\fi720\ri0\partightenfactor0
+
+\f7 \cf0 Library(raster)\
+mat <- raster('C:/data/mat.asc')\
+plot(mat) 
+\f9\i  \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f6 \cf0 6) Tutorial videos\
+\pard\pardeftab720\ri0\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "%22"}}{\fldrslt 
+\f0\i0 \cf2 \ul https://www.youtube.com/channel/UC6v_vfKWSZ_o05Ud-yscj7Q/video}}
+\f3\i0 \
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\b\fs28 \cf0 How to refer\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\b0\fs24 \cf0 \
+\pard\pardeftab720\li567\fi-567\ri0\partightenfactor0
+\cf0 Wang T, Hamann A, Spittlehouse D, Carroll C (2016) Locally Downscaled and Spatially Customizable Climate Data for Historical and Future Periods for North America. PLoS ONE 11(6): e0156720. doi:10.1371/journal.pone.0156720\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f2\b\fs32 \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\fs28 \cf0 References\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f3\b0\fs24 \cf0 	\
+\pard\pardeftab720\li567\fi-567\ri0\partightenfactor0
+\cf0 Wang, T; Hamann, A; Spittlehouse, DL; Carroll, C (2016). Locally Downscaled and Spatially Customizable Climate Data for Historical and Future Periods for North America. PLoS ONE 11(6)\
+\
+Wang, T; Hamann, A; Spittlehouse, DL; Murdock, TQ (2012). ClimateWNA \'96 High-resolution spatial climate data for western North America. 
+\f4\i Journal of Applied Meteorology and Climatology
+\f3\i0  51:16-29.\
+\
+\pard\pardeftab720\li567\fi-567\ri0\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "http://genetics.forestry.ubc.ca/cfgc/people.html"}}{\fldrslt \cf0 Wang, T}}; Hamann, A; Spittlehouse, DL; Aitken, SN (2006). Development of scale-free climate data for western Canada for use in resource management. 
+\f4\i International Journal of Climatology
+\f3\i0 , 26(3):383-397.\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf0 \
+\pard\pardeftab720\li567\fi-567\ri0\partightenfactor0
+\cf0 Daly, C; Halbleib, M; Smith, JI; Gibson, WP; Doggett, MK; Taylor, GH; Curtis, J (2008). Physiographically sensitive mapping of temperature and precipitation across the conterminous United States. Int. J. Climatol., 28, 2031\'962064.\
+\pard\pardeftab720\li720\fi-720\ri0\partightenfactor0
+\cf0 \
+Harris, I; Jones, PD; Osborn, TJ; Lister, DH (2014), Updated high-resolution grids of monthly climatic observations - the CRU TS3.10 Dataset. International Journal of Climatology, 34: 623-642. \
+\
+Hijmans, R. J., S. E. Cameron, J. L. Parra, P. G. Jones, and A. Jarvis. 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 
+\f2\b 25
+\f3\b0 :1965-1978.\
+}
